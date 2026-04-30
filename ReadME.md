@@ -21,7 +21,8 @@ BCCD_Script-master/
 
 ## Data Source
 This project uses the [BCCD (Blood Cell Count and Detection) Dataset] provided by [Shenggan](https://github.com/Shenggan/BCCD_Dataset).
-**Note:** The dataset is not included in this repository. To run this project, please download the data from the original source linked above and replace the path in "finetune_detr.py".
+
+>**Note:** The dataset is not included in this repository. To run this project, please download the data from the original source linked above and replace the path in "finetune_detr.py".
 
 ## Dataset
 - Dataset: BCCD (Blood Cell Count and Detection) 
@@ -82,5 +83,5 @@ python .\scripts\run_pipeline.py
 ```
 
 ### GPU Note
-> Note: If a CUDA-compatible GPU is available, PyTorch will automatically use it.
+> **Note:** If a CUDA-compatible GPU is available, PyTorch will automatically use it.
 > The project also runs correctly on CPU.
