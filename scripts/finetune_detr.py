@@ -13,13 +13,15 @@ from PIL import Image
 from torch.utils.data import Dataset
 
 BASE_DIR = Path(__file__).resolve().parent.parent
+# Change this to where you have saved the BCCD dataset locally
+DATA_SET_PATH = "../BCCD_Dataset-master/BCCD/JPEGImages"
 
 # ---------------- Training ----------------
 
 # Paths
 TRAIN_JSON = str (BASE_DIR / "coco_Data/instances_train.json")
 VAL_JSON = str (BASE_DIR / "coco_Data/instances_val.json")
-IMAGE_ROOT = str (BASE_DIR / "BCCD_Dataset-master/BCCD/JPEGImages")
+IMAGE_ROOT = DATA_SET_PATH
 
 class COCODataset(Dataset):
     def __init__(self, annotation_file, image_root, processor):

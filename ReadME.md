@@ -12,18 +12,19 @@ The project uses a pretrained DETR model from Hugging Face and adapts it to a me
 ---
 
 ### Repository Structure
-HS_Mannheim/
-├── BCCD_Dataset-master/   # Original dataset
+BCCD_Script-master/
 ├── coco_Data/             # COCO annotations
 ├── scripts/               # Training & evaluation scripts
 ├── outputs/               # Saved model checkpoints
-├── venv/                  # Virtual environment
 ├── requirements.txt       # List of dependencies
 └── README.md              # Description of whole project
 
+## Data Source
+This project uses the [BCCD (Blood Cell Count and Detection) Dataset] provided by [Shenggan](https://github.com/Shenggan/BCCD_Dataset).
+**Note:** The dataset is not included in this repository. To run this project, please download the data from the original source linked above and replace the path in "finetune_detr.py".
 
 ## Dataset
-- Dataset: BCCD (Blood Cell Count and Detection)
+- Dataset: BCCD (Blood Cell Count and Detection) 
 - Original annotations: Pascal VOC (XML)
 - Converted format: COCO JSON
 - Image resolution: 640 × 480
@@ -56,6 +57,7 @@ Transfer learning strategy:
 ### Python Version
 - Python 3.12
 
+<!--
 ### Create Virtual Environment and Installation
 ```bash
 python -m venv venv
@@ -65,7 +67,7 @@ python -m venv venv
 pip install -r requirements.txt
 
 ```
-
+-->
 ### Training details:
 Epochs: 10
 Batch size: 2
