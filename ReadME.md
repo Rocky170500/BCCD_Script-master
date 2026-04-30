@@ -58,17 +58,13 @@ Transfer learning strategy:
 ### Python Version
 - Python 3.12
 
-<!--
-### Create Virtual Environment and Installation
+### Installation
 ```bash
-python -m venv venv
-
-.\venv\Scripts\activate
 
 pip install -r requirements.txt
 
 ```
--->
+
 ### Training details:
 Epochs: 10
 Batch size: 2
