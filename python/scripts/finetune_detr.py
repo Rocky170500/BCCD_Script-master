@@ -158,6 +158,30 @@ processor.save_pretrained(BASE_DIR / "outputs/detr_bccd")
 
 print("Training complete. Model saved.")
 
+#-----------------ONNX Export----------------
+print("Exporting model to ONNX format for C++ and Python comparison")
+
+dummy_input = torch.randn(1, 3, 800, 800)
+
+if torch.cuda.is_available():
+    dummy_input = dummy_input.cuda()
+    
+onnx_out_path = str(BASE_DIR / "outputs/detr_bccd/model.onnx")
+torch.onnx.export(
+    model,
+    (dummy_input,),
+    onnx_out_path,
+    export_params=True,        # Store the trained parameter weights inside the file
+    opset_version=16,          # Stable opset version supporting Transformer layers
+    input_names=["input"],     # Name of input layer for your C++ code
+    output_names=["output"],   # Name of output layer for your C++ code
+    dynamic_axes={             # Allows C++ to pass variable image dimensions later
+        "input": {0: "batch_size", 2: "height", 3: "width"},
+        "output": {0: "batch_size"}
+    }
+)
+print(f"ONNX model successfully saved to: {onnx_out_path}")
+
 # ---------------- Evaluation ----------------
 
 metrics = trainer.evaluate()
