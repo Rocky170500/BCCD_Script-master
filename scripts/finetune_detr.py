@@ -129,7 +129,7 @@ def collate_fn(batch):
 
 # Training arguments
 training_args = TrainingArguments(
-    output_dir=str(BASE_DIR / "outputs/runs/"),
+    output_dir=str(BASE_DIR / "training_outputs/runs/"),
     overwrite_output_dir=True,
     per_device_train_batch_size=2,
     per_device_eval_batch_size=2,
@@ -152,8 +152,8 @@ trainer = Trainer(
 )
 
 trainer.train()
-trainer.save_model(BASE_DIR / "outputs/detr_bccd")
-processor.save_pretrained(BASE_DIR / "outputs/detr_bccd")
+trainer.save_model(BASE_DIR / "training_outputs/detr_bccd")
+processor.save_pretrained(BASE_DIR / "training_outputs/detr_bccd")
 
 
 print("Training complete. Model saved.")
@@ -166,7 +166,7 @@ dummy_input = torch.randn(1, 3, 800, 800)
 if torch.cuda.is_available():
     dummy_input = dummy_input.cuda()
     
-onnx_out_path = str(BASE_DIR / "outputs/detr_bccd/model.onnx")
+onnx_out_path = str(BASE_DIR / "training_outputs/detr_bccd/model.onnx")
 torch.onnx.export(
     model,
     (dummy_input,),
@@ -185,7 +185,7 @@ print(f"ONNX model successfully saved to: {onnx_out_path}")
 # ---------------- Evaluation ----------------
 
 metrics = trainer.evaluate()
-eval_dir = BASE_DIR / "outputs/detr_bccd_eval"
+eval_dir = BASE_DIR / "training_outputs/detr_bccd_eval"
 
 print("Evaluation Metrics:")
 for k, v in metrics.items():
